@@ -1,0 +1,45 @@
+.bitcoin-ticker {
+    position: relative;
+    padding-left: 39px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    color: #F7921A;
+    font-weight: bolder;
+    top: -3px;
+    font-size:15px;
+}
+.bitcoin-ticker .bitcoin-logo {
+    position: absolute;
+    height: auto;
+    left: 5px;
+    top: 2px;
+}
+.bitcoin-ticker .bitcoin-rate {
+    position: relative;
+    top: 4px;
+    left: 3px;
+}
+
+.bitcoin-ticker .bitcoin-rate.animate {
+    position: relative;
+    -webkit-animation-name: upOutDownIn;
+    animation-name: upOutDownIn;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+}
+
+
+/* Standard syntax */
+@-webkit-keyframes upOutDownIn {
+    0%   {top:0px; opacity:1}
+    25%  {top:-50px; opacity:0}
+    50%  {top:50px; opacity:0}
+    100%  {top:0px; opacity: 1}
+}
+@keyframes upOutDownIn {
+    0%   {top:0px; opacity:1}
+    25%  {top:-50px; opacity:0}
+    50%  {top:50px; opacity:0}
+    100%  {top:0px; opacity: 1}
+}
+

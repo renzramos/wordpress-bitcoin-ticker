@@ -11,7 +11,6 @@ License: GPL2
 
 $GLOBALS['source'] = "http://api.coindesk.com/v1/bpi/currentprice/usd.json";
 
-
 function bitcoin_ticker_scripts(){
 	wp_enqueue_style( 'bitcoin-ticker-style', plugin_dir_url(__FILE__) . 'assets/css/style.css', array(), null  );
 	wp_enqueue_script('bitcoin-ticker-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array('jquery'), "3.0", true);

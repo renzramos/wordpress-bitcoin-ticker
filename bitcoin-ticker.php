@@ -3,7 +3,7 @@
 Plugin Name: Bitcoin Ticker
 Plugin URI: http://www.renzramos.com/wordpress/plugins/bitcoin-ticker
 Description: Simple bitcoin ticker using CoinDesk API
-Version: 1.0
+Version: 1.1
 Author: Renz Ramos
 Author URI: http://www.renzramos.com
 License: GPL2

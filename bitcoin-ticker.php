@@ -3,7 +3,7 @@
 Plugin Name: Bitcoin Ticker
 Plugin URI: http://www.renzramos.com/wordpress/plugins/bitcoin-ticker
 Description: Simple bitcoin ticker using CoinDesk API
-Version: 1.1
+Version: 1.0
 Author: Renz Ramos
 Author URI: http://www.renzramos.com
 License: GPL2
@@ -29,9 +29,25 @@ add_action( 'wp_enqueue_scripts','bitcoin_ticker_scripts');
 
 // shortcode
 function bitcoin_ticker_function( $atts ){
-	$data = json_decode(file_get_contents($GLOBALS['source']));
+	
+	$content = @file_get_contents($GLOBALS['source']);
+    $from  = 'CoinDesk';
+    
+    if ($content) {
+        
+        $data = json_decode($content);
+        $rate = $data->bpi->USD->rate_float;
+         
+    } else {
+        // get fallback
+        $content = file_get_contents('https://blockchain.info/ticker');
+        $content = json_decode(trim($content));
+        $rate = $content->USD->last;
+        $from  = 'BlockChain';
+    }
+	
 	$rate = $data->bpi->USD->rate_float;
-	return "<div class='bitcoin-ticker'><img alt='Bitcoin Logo' src='" . plugin_dir_url(__FILE__) . 'assets/images/bitcoin-logo.png' . "' class='bitcoin-logo'/><span class='bitcoin-rate'>" . number_format($rate,2, '.', '') . "</span></div>";
+	return "<div class='bitcoin-ticker' title='Bitcoin Price From " . $from . "'><img alt='Bitcoin Logo' src='" . plugin_dir_url(__FILE__) . 'assets/images/bitcoin-logo.png' . "' class='bitcoin-logo'/><span class='bitcoin-rate'>" . number_format($rate,2, '.', '') . "</span></div>";
 }
 add_shortcode( 'bitcoin_ticker', 'bitcoin_ticker_function' );
 
